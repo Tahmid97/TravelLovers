@@ -1,0 +1,34 @@
+<div class="login-card">
+  <mat-card id="card" style="text-align: center;">
+    <mat-card-title>
+      Register
+    </mat-card-title>
+
+    <mat-card-content>
+
+      <mat-form-field appearance="outline">
+        <input type="text" matInput [(ngModel)]='firstName'  placeholder="First name">
+      </mat-form-field><br/>
+
+      <mat-form-field appearance="outline">
+        <input matInput type="password" [(ngModel)]='lastName' placeholder="Last name">
+      </mat-form-field><br/>
+
+      <mat-form-field appearance="outline">
+        <input matInput type="password" [(ngModel)]='username' placeholder="Username">
+      </mat-form-field><br/>
+
+      <mat-form-field appearance="outline">
+        <input matInput type="password" [(ngModel)]='email' placeholder="Email">
+      </mat-form-field><br/>
+
+      <mat-form-field appearance="outline">
+        <input matInput type="password" [(ngModel)]='password' placeholder="Password">
+      </mat-form-field><br/>
+
+      <button mat-raised-button color="primary" style="margin-right:20px;" (click)="register()">Register</button>
+      <button mat-raised-button color="primary" style="margin-left:20px;" routerLink="/login">Cancel</button>
+
+    </mat-card-content>
+  </mat-card>
+</div>

@@ -1,0 +1,11 @@
+.card {
+  max-width: 270px;
+}
+
+.bookmarked {
+  color: gold;
+}
+
+.bookmark {
+  color: gray;
+}

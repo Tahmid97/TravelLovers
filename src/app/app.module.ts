@@ -12,6 +12,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import { PlaceComponent } from './place/place.component';
 import { ReviewComponent } from './review/review.component';
+import { ProfileComponent } from './profile/profile.component';
 
 
 
@@ -24,6 +25,7 @@ import { ReviewComponent } from './review/review.component';
     RegisterComponent,
     PlaceComponent,
     ReviewComponent,
+    ProfileComponent,
   ],
   imports: [
     BrowserModule,

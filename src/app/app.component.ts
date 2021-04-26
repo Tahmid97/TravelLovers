@@ -29,7 +29,7 @@ export class AppComponent {
   get isAdmin() {
     // tslint:disable-next-line:max-line-length
     // In a later version of this code. We will define a class User and have that encompass both the username and role. For now we will just hardcode it.
-    return this.currentUser && this.currentUser.role === Role.admin;
+    return this.currentUser;
   }
 
   get isUser() {

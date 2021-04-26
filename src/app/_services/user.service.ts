@@ -3,14 +3,14 @@ import { Injectable } from '@angular/core';
 import {Observable} from 'rxjs';
 import {NotificationService} from './notification.service';
 import {TouristSpot} from '../_models/tourist-spot';
-
-
+import {HttpClient} from '@angular/common/http';
+import {Review} from '../_models/review';
 
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
 
-  constructor(private notif: NotificationService) {
+  constructor(private notif: NotificationService, private http: HttpClient) {
   }
 
   getPlaces(): TouristSpot[] {
@@ -44,15 +44,92 @@ export class UserService {
   }
 
 
-  deleteActivity(createdDate: Date) {
-    // identify the object in the array of objects.
-    /* Delete Activity has been handled in home.component.ts using event emitter, I was not sure why I would need to handle the
-    * delete here because the parecords array in this class is supposed to be persistent and load the 4 parecords on reload.*/
+  search(type, category, city) {
+    return this.http.get<TouristSpot[]>('');
   }
 
 
-  private randomDate(start, end) {
-    return new Date(start.getTime() + Math.random() * (end.getTime() - start.getTime()));
+  /*
+    Favorites
+  */
+  getFavorites() {
+    return this.http.get<TouristSpot[]>('');
   }
 
+  addToFavorite(spot: TouristSpot) {
+    return this.http.post<TouristSpot>('', spot);
+  }
+
+  removeFromFavorite(spot: TouristSpot) {
+    return this.http.post<TouristSpot>('', spot);
+  }
+
+
+  /*
+    Want to go
+  */
+  getWantToGo() {
+    return this.http.get<TouristSpot[]>('');
+  }
+
+  addToWantToGo(spot: TouristSpot) {
+    return this.http.post<TouristSpot>('', spot);
+  }
+
+  removeFromWantToGo(spot: TouristSpot) {
+    return this.http.post<TouristSpot>('', spot);
+  }
+
+  /*
+    Starred
+  */
+  getStarred() {
+    return this.http.get<TouristSpot[]>('');
+  }
+
+  addToStarred(spot: TouristSpot) {
+    return this.http.post<TouristSpot>('', spot);
+  }
+
+  removeFromStarred(spot: TouristSpot) {
+    return this.http.post<TouristSpot>('', spot);
+  }
+
+  /*
+    visited
+  */
+  getVisited() {
+    return this.http.get<TouristSpot[]>('');
+  }
+
+  addToVisited(spot: TouristSpot) {
+    return this.http.post<TouristSpot>('', spot);
+  }
+
+  removeFromVisited(spot: TouristSpot) {
+    return this.http.post<TouristSpot>('', spot);
+  }
+
+  /*
+    Review
+  */
+  addReview(spot: TouristSpot, review: Review) {
+    return this.http.post<TouristSpot>('', spot);
+  }
+
+
+  /*
+    User services
+  */
+  login() {
+
+  }
+
+  register() {
+
+  }
+
+  edit() {
+
+  }
 }

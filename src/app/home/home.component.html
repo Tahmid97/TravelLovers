@@ -10,41 +10,61 @@
 
   <mat-form-field appearance="outline" class="select">
     <mat-label>Search</mat-label>
-    <mat-select [(value)]="search">
+    <mat-select [(value)]="type">
       <mat-option value="TouristSpot">Tourist Spot</mat-option>
       <mat-option value="Restaurant">Restaurant</mat-option>
     </mat-select>
   </mat-form-field>
 
   <mat-form-field appearance="outline" class="select">
-    <mat-label *ngIf="search==='TouristSpot'">Category</mat-label>
-    <mat-label *ngIf="search==='Restaurant'">Cuisine</mat-label>
+    <mat-label *ngIf="type==='TouristSpot'">Category</mat-label>
+    <mat-label *ngIf="type==='Restaurant'">Cuisine</mat-label>
 
-    <mat-select [(value)]="type">
-      <mat-option *ngIf="search==='TouristSpot'" value="Museum">Museum</mat-option>
-      <mat-option *ngIf="search==='TouristSpot'" value="Zoo">Zoo</mat-option>
-      <mat-option *ngIf="search==='TouristSpot'" value="Aquarium">Aquarium</mat-option>
-      <mat-option *ngIf="search==='Restaurant'" value="Italian">Italian</mat-option>
-      <mat-option *ngIf="search==='Restaurant'" value="Italian">Mexican</mat-option>
-      <mat-option *ngIf="search==='Restaurant'" value="Italian">Indian</mat-option>
-      <mat-option *ngIf="search==='Restaurant'" value="Italian">American</mat-option>
-      <mat-option *ngIf="search==='Restaurant'" value="Italian">Chinese</mat-option>
+    <mat-select [(value)]="category">
+      <mat-option *ngIf="type==='TouristSpot'" value="Museum">Museum</mat-option>
+      <mat-option *ngIf="type==='TouristSpot'" value="Zoo">Zoo</mat-option>
+      <mat-option *ngIf="type==='TouristSpot'" value="Aquarium">Aquarium</mat-option>
+      <mat-option *ngIf="type==='Restaurant'" value="Italian">Italian</mat-option>
+      <mat-option *ngIf="type==='Restaurant'" value="Italian">Mexican</mat-option>
+      <mat-option *ngIf="type==='Restaurant'" value="Italian">Indian</mat-option>
+      <mat-option *ngIf="type==='Restaurant'" value="Italian">American</mat-option>
+      <mat-option *ngIf="type==='Restaurant'" value="Italian">Chinese</mat-option>
     </mat-select>
   </mat-form-field>
 
 
   <mat-form-field appearance="outline" class="search">
     <mat-label>Search</mat-label>
-    <input matInput placeholder="Enter destination city name">
-    <mat-icon matSuffix>search</mat-icon>
+    <input matInput placeholder="Enter destination city name" [(ngModel)]="city">
+    <mat-icon matSuffix (click)="searchPlaces()">search</mat-icon>
   </mat-form-field>
 
 </div>
 
 
-  <div class="card-container">
-    <app-place *ngFor="let place of places" [place]="place" [tab]="selected.value"></app-place>
-  </div>
+<div *ngIf="selected.value===0" class="card-container">
+  <app-place *ngFor="let place of places" [place]="place" [tab]="selected.value"></app-place>
+</div>
+
+
+<div *ngIf="selected.value===1" class="card-container">
+  <app-place *ngFor="let place of favorites" [place]="place" [tab]="selected.value"></app-place>
+</div>
+
+<div *ngIf="selected.value===2" class="card-container">
+  <app-place *ngFor="let place of wantToGo" [place]="place" [tab]="selected.value"></app-place>
+</div>
+
+<div *ngIf="selected.value===3" class="card-container">
+  <app-place *ngFor="let place of starred" [place]="place" [tab]="selected.value"></app-place>
+</div>
+
+<div *ngIf="selected.value===4" class="card-container">
+  <app-place *ngFor="let place of visited" [place]="place" [tab]="selected.value"></app-place>
+</div>
+
+
+
 
 
 

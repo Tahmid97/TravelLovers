@@ -14,22 +14,22 @@
 
       <mat-menu #menu="matMenu">
 
-        <button mat-menu-item>
+        <button mat-menu-item (click)="addFavorite()">
           <mat-icon>favorite</mat-icon>
           <span>Add to favorite</span>
         </button>
 
-        <button mat-menu-item>
+        <button mat-menu-item (click)="addWantToGo()">
           <mat-icon>bookmark</mat-icon>
           <span>Add to want to go</span>
         </button>
 
-        <button mat-menu-item>
+        <button mat-menu-item (click)="addStarred()">
           <mat-icon>star</mat-icon>
           <span>Add to starred</span>
         </button>
 
-        <button mat-menu-item>
+        <button mat-menu-item (click)="addVisited()">
           <mat-icon>collections_bookmark</mat-icon>
           <span>Mark as visited</span>
         </button>
@@ -46,7 +46,7 @@
 
       <mat-menu #menu="matMenu">
 
-        <button mat-menu-item>
+        <button mat-menu-item (click)="removeFavorite()">
           <mat-icon>delete</mat-icon>
           <span>Remove from favorite</span>
         </button>
@@ -62,7 +62,7 @@
 
       <mat-menu #menu="matMenu">
 
-        <button mat-menu-item>
+        <button mat-menu-item (click)="removeWantToGo()">
           <mat-icon>delete</mat-icon>
           <span>Remove from want to go</span>
         </button>
@@ -77,7 +77,7 @@
 
       <mat-menu #menu="matMenu">
 
-        <button mat-menu-item>
+        <button mat-menu-item (click)="removeStarred()">
           <mat-icon>delete</mat-icon>
           <span>Remove from starred</span>
         </button>
@@ -93,7 +93,7 @@
 
       <mat-menu #menu="matMenu">
 
-        <button mat-menu-item>
+        <button mat-menu-item (click)="removeVisited()">
           <mat-icon>delete</mat-icon>
           <span>Remove from visited</span>
         </button>

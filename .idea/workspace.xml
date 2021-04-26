@@ -2,15 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="0d0fd5c7-b696-4881-9e04-9e6c81929ffa" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/app/profile/profile.component.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/profile/profile.component.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/app/profile/profile.component.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/app/_models/review.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/user.service.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/register/register.component.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/register/register.component.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/register/register.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/register/register.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/home/home.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/home/home.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/home/home.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/place/place.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/place/place.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/place/place.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/place/place.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/review/review.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/review/review.component.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +110,7 @@
       <workItem from="1619141543769" duration="3503000" />
       <workItem from="1619206151278" duration="1242000" />
       <workItem from="1619280930335" duration="599000" />
-      <workItem from="1619449746613" duration="5920000" />
+      <workItem from="1619449746613" duration="12012000" />
     </task>
     <servers />
   </component>

@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms';
 import { PlaceComponent } from './place/place.component';
 import { ReviewComponent } from './review/review.component';
 import { ProfileComponent } from './profile/profile.component';
+import {HttpClientModule} from '@angular/common/http';
 
 
 
@@ -32,7 +33,8 @@ import { ProfileComponent } from './profile/profile.component';
     AppRoutingModule,
     BrowserAnimationsModule,
     MaterialModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   entryComponents: [
     ReviewComponent

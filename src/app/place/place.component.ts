@@ -24,7 +24,7 @@ export class PlaceComponent implements OnInit {
     const dialogRef = this.dialog.open(ReviewComponent, {
       width: '710px',
       data: {
-        title: this.place.name,
+        title: this.place.place_name,
         text: '',
         rating: null,
         recommended: null
@@ -40,7 +40,7 @@ export class PlaceComponent implements OnInit {
       };
 
       this.userService.addReview(this.place, review).subscribe(response => {
-        this.notif.showNotif('Review added for ' + this.place.name, 'dismiss');
+        this.notif.showNotif('Review added for ' + this.place.place_name, 'dismiss');
       });
       console.log('In Home component');
       console.log(result);
@@ -51,7 +51,7 @@ export class PlaceComponent implements OnInit {
 
   addFavorite() {
     this.userService.addToFavorite(this.place).subscribe(result => {
-      this.notif.showNotif('Added ' + result.name + ' to favorites', 'dismiss');
+      this.notif.showNotif('Added ' + result.place_name + ' to favorites', 'dismiss');
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });
@@ -59,7 +59,7 @@ export class PlaceComponent implements OnInit {
 
   removeFavorite() {
     this.userService.removeFromFavorite(this.place).subscribe(result => {
-      this.notif.showNotif('Removed ' + result.name + ' from favorites', 'dismiss');
+      this.notif.showNotif('Removed ' + result.place_name + ' from favorites', 'dismiss');
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });
@@ -69,7 +69,7 @@ export class PlaceComponent implements OnInit {
 
   addWantToGo() {
     this.userService.addToWantToGo(this.place).subscribe(result => {
-      this.notif.showNotif('Added ' + result.name + ' to Want To Go', 'dismiss');
+      this.notif.showNotif('Added ' + result.place_name + ' to Want To Go', 'dismiss');
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });
@@ -77,7 +77,7 @@ export class PlaceComponent implements OnInit {
 
   removeWantToGo() {
     this.userService.removeFromWantToGo(this.place).subscribe(result => {
-      this.notif.showNotif('Removed ' + result.name + ' from Want To Go', 'dismiss');
+      this.notif.showNotif('Removed ' + result.place_name + ' from Want To Go', 'dismiss');
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });
@@ -87,7 +87,7 @@ export class PlaceComponent implements OnInit {
 
   addStarred() {
     this.userService.addToStarred(this.place).subscribe(result => {
-      this.notif.showNotif('Added ' + result.name + ' to starred', 'dismiss');
+      this.notif.showNotif('Added ' + result.place_name + ' to starred', 'dismiss');
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });
@@ -95,7 +95,7 @@ export class PlaceComponent implements OnInit {
 
   removeStarred() {
     this.userService.removeFromStarred(this.place).subscribe(result => {
-      this.notif.showNotif('Removed ' + result.name + ' from starred', 'dismiss');
+      this.notif.showNotif('Removed ' + result.place_name + ' from starred', 'dismiss');
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });
@@ -105,7 +105,7 @@ export class PlaceComponent implements OnInit {
 
   addVisited() {
     this.userService.addToVisited(this.place).subscribe(result => {
-      this.notif.showNotif('Added ' + result.name + ' to visited', 'dismiss');
+      this.notif.showNotif('Added ' + result.place_name + ' to visited', 'dismiss');
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });
@@ -113,7 +113,7 @@ export class PlaceComponent implements OnInit {
 
   removeVisited() {
     this.userService.removeFromVisited(this.place).subscribe(result => {
-      this.notif.showNotif('Removed ' + result.name + ' from visited', 'dismiss');
+      this.notif.showNotif('Removed ' + result.place_name + ' from visited', 'dismiss');
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });

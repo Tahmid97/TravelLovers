@@ -21,14 +21,14 @@
     <mat-label *ngIf="type==='Restaurant'">Cuisine</mat-label>
 
     <mat-select [(value)]="category">
-      <mat-option *ngIf="type==='TouristSpot'" value="Museum">Museum</mat-option>
-      <mat-option *ngIf="type==='TouristSpot'" value="Zoo">Zoo</mat-option>
-      <mat-option *ngIf="type==='TouristSpot'" value="Aquarium">Aquarium</mat-option>
+      <mat-option *ngIf="type==='TouristSpot'" value="museums">Museum</mat-option>
+      <mat-option *ngIf="type==='TouristSpot'" value="zoos">Zoo</mat-option>
+      <mat-option *ngIf="type==='TouristSpot'" value="aquariums">Aquarium</mat-option>
+      <mat-option *ngIf="type==='Restaurant'" value="American">American</mat-option>
+      <mat-option *ngIf="type==='Restaurant'" value="Arabic">Arabic</mat-option>
+      <mat-option *ngIf="type==='Restaurant'" value="Chinese">Chinese</mat-option>
+      <mat-option *ngIf="type==='Restaurant'" value="Indian">Indian</mat-option>
       <mat-option *ngIf="type==='Restaurant'" value="Italian">Italian</mat-option>
-      <mat-option *ngIf="type==='Restaurant'" value="Italian">Mexican</mat-option>
-      <mat-option *ngIf="type==='Restaurant'" value="Italian">Indian</mat-option>
-      <mat-option *ngIf="type==='Restaurant'" value="Italian">American</mat-option>
-      <mat-option *ngIf="type==='Restaurant'" value="Italian">Chinese</mat-option>
     </mat-select>
   </mat-form-field>
 

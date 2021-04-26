@@ -30,30 +30,14 @@ export class AuthService {
     // In the future we will do server authentication here. For now we will simulate it.
   return new Observable(subscriber => {
 
-  if (username === 'admin' && password === '123') {
+  if (username === 'admin') {
      const user: User = {username, role: Role.admin, token: 'some_random_token'};
-
      localStorage.setItem('currentUser', JSON.stringify(user));
-    //  notify all subscribers that user has logged in.
-
-
      setTimeout(() => {
       subscriber.next('Logged in!');
       this.currentUserSubject.next(user);
       }, 1000);
-  } else if (username === 'user' && password === '123') {
-      const user: User = {username, role: Role.user, token: 'some_random_token'};
-
-      localStorage.setItem('currentUser', JSON.stringify(user));
-      //  notify all subscribers that user has logged in.
-
-
-      setTimeout(() => {
-        subscriber.next('Logged in!');
-        this.currentUserSubject.next(user);
-      }, 1000);
-    } else {
-    // reject
+  } else {
     setTimeout(() => {
       subscriber.error('Wrong username or password');
     }, 1000);

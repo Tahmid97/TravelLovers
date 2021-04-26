@@ -1,12 +1,8 @@
 export class TouristSpot {
-  id: string;
+  // tslint:disable-next-line:variable-name
+  place_id: number;
   price: number;
-  number: string;
-  street: string;
-  city: string;
-  zip: string;
-  country: string;
-  name: string;
-  category: string;
-  favorite: boolean;
+  // tslint:disable-next-line:variable-name
+  place_name: string;
+  address: string;
 }

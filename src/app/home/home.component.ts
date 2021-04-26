@@ -28,15 +28,15 @@ export class HomeComponent implements OnInit {
   constructor(private userService: UserService, private notif: NotificationService) { }
 
   ngOnInit(): void {
-     this.places = this.userService.getPlaces();
-     this.favorites = this.userService.getPlaces();
-     this.wantToGo = this.userService.getPlaces();
-     this.starred = this.userService.getPlaces();
-     this.visited = this.userService.getPlaces();
+     this.getAllFavorites();
+     this.getAllWantToGo();
+     this.getAllStarred();
+     this.getAllVisited();
   }
 
   searchPlaces(): void {
     this.userService.search(this.type, this.category, this.city).subscribe(result => {
+      console.log(result);
       this.places = result;
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
@@ -46,6 +46,7 @@ export class HomeComponent implements OnInit {
 
   getAllFavorites() {
     this.userService.getFavorites().subscribe(result => {
+      console.log(result);
       this.favorites = result;
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');

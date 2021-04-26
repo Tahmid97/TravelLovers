@@ -5,6 +5,7 @@ import {NotificationService} from './notification.service';
 import {TouristSpot} from '../_models/tourist-spot';
 import {HttpClient} from '@angular/common/http';
 import {Review} from '../_models/review';
+import {User} from '../_models/user';
 
 
 @Injectable({ providedIn: 'root' })
@@ -13,39 +14,16 @@ export class UserService {
   constructor(private notif: NotificationService, private http: HttpClient) {
   }
 
-  getPlaces(): TouristSpot[] {
-    const spots: TouristSpot[] = [
-      {
-        id: '01',
-        price: 12,
-        number: '1260',
-        street: 'Progress st',
-        city: 'Blacksburg',
-        zip: '20147',
-        country: 'USA',
-        name: 'Virginia Tech',
-        category: 'None',
-        favorite: false
-      },
-      {
-        id: '02',
-        price: 20,
-        number: '1600',
-        street: 'Turner st',
-        city: 'Blacksburg',
-        zip: '20147',
-        country: 'USA',
-        name: 'Burress Hall',
-        category: 'None',
-        favorite: true
-      }
-    ];
-    return spots;
-  }
-
-
   search(type, category, city) {
-    return this.http.get<TouristSpot[]>('');
+
+    console.log(category);
+    console.log(city);
+
+    if (type === 'TouristSpot') {
+      return this.http.get<TouristSpot[]>('http://localhost:8080/searchTouristCity?cat=' + category + '&address=' + city);
+    } else {
+      return this.http.get<TouristSpot[]>('http://localhost:8080/searchRestCity?cus=' + category + '&address=' + city);
+    }
   }
 
 
@@ -53,11 +31,12 @@ export class UserService {
     Favorites
   */
   getFavorites() {
-    return this.http.get<TouristSpot[]>('');
+    console.log('get favorites');
+    return this.http.get<TouristSpot[]>('http://localhost:8080/searchFav?fname=Evie');
   }
 
   addToFavorite(spot: TouristSpot) {
-    return this.http.post<TouristSpot>('', spot);
+    return this.http.post<TouristSpot>('http://localhost:8080/insertFav?place=5&user=5', spot);
   }
 
   removeFromFavorite(spot: TouristSpot) {
@@ -69,7 +48,7 @@ export class UserService {
     Want to go
   */
   getWantToGo() {
-    return this.http.get<TouristSpot[]>('');
+    return this.http.get<TouristSpot[]>('http://localhost:8080/searchWant?fname=Evie');
   }
 
   addToWantToGo(spot: TouristSpot) {
@@ -84,7 +63,7 @@ export class UserService {
     Starred
   */
   getStarred() {
-    return this.http.get<TouristSpot[]>('');
+    return this.http.get<TouristSpot[]>('http://localhost:8080/searchStar?fname=Evie');
   }
 
   addToStarred(spot: TouristSpot) {
@@ -99,7 +78,7 @@ export class UserService {
     visited
   */
   getVisited() {
-    return this.http.get<TouristSpot[]>('');
+    return this.http.get<TouristSpot[]>('http://localhost:8080/searchVisit?fname=Evie');
   }
 
   addToVisited(spot: TouristSpot) {
@@ -114,7 +93,7 @@ export class UserService {
     Review
   */
   addReview(spot: TouristSpot, review: Review) {
-    return this.http.post<TouristSpot>('', spot);
+    return this.http.post<TouristSpot>('http://localhost:8080/insertReview?place=5&user=3&rating=1&recommended=true', spot);
   }
 
 
@@ -122,14 +101,25 @@ export class UserService {
     User services
   */
   login() {
-
+    // return the users info based on username
   }
 
   register() {
-
+    return this.http.post<User>('http://localhost:8080/insertUser?id=1&fname=tim&lname=yom&email=manmail@mail.com&gender=male&dob=2005-05-23', '');
   }
 
   edit() {
+    // post request to alter user info by username
+  }
+
+  /*
+    History
+  */
+  getSearchHistory() {
+
+  }
+
+  addSearchHistory() {
 
   }
 }

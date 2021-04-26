@@ -11,6 +11,7 @@ import {MaterialModule} from './material-module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import { PlaceComponent } from './place/place.component';
+import { ReviewComponent } from './review/review.component';
 
 
 
@@ -22,6 +23,7 @@ import { PlaceComponent } from './place/place.component';
     HomeComponent,
     RegisterComponent,
     PlaceComponent,
+    ReviewComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,9 @@ import { PlaceComponent } from './place/place.component';
     BrowserAnimationsModule,
     MaterialModule,
     FormsModule
+  ],
+  entryComponents: [
+    ReviewComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

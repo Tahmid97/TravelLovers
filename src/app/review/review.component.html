@@ -1,0 +1,22 @@
+<h1 mat-dialog-title style="margin-left: 35%"><b>{{data.title}}</b></h1>
+
+<div mat-dialog-content>
+
+  <p>
+    <mat-form-field appearance="outline" class="description">
+      <mat-label>Review</mat-label>
+      <textarea style="height: 150px" matInput [(ngModel)]="data.description"></textarea>
+    </mat-form-field>
+  </p>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Stars</mat-label>
+    <input matInput type="number" [min]="1" [max]="5" [(ngModel)]="data.points">
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Save</button>
+  <button mat-raised-button color="primary" (click)="onNoClick()">Discard</button>
+</div>

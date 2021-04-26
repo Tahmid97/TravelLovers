@@ -3,6 +3,7 @@ import {FormControl} from '@angular/forms';
 import {UserService} from '../_services/user.service';
 import {TouristSpot} from '../_models/tourist-spot';
 
+
 @Component({
   selector: 'app-main-view',
   templateUrl: './home.component.html',
@@ -23,5 +24,4 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.places = this.userService.getPlaces();
   }
-
 }

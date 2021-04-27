@@ -5,7 +5,15 @@
   </mat-card-header>
 
   <mat-card-content>
-    <p>${{place.price}}</p>
+    <div style="width: 100%;">
+      <div style="width: 50%; float: left;">
+        {{avgRating}} stars
+      </div>
+      <div style="margin-left: 50%;">
+        ${{place.price}}
+      </div>
+    </div>
+
 
     <div *ngIf="tab===0" class="topright">
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Drop Down Menu">

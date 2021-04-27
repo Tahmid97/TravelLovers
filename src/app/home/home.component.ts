@@ -38,10 +38,21 @@ export class HomeComponent implements OnInit {
     this.userService.search(this.type, this.category, this.city).subscribe(result => {
       console.log(result);
       this.places = result;
+
+      for (const place of result) {
+        this.addToHistory(place);
+      }
+
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });
     this.notif.showNotif(this.category + ' ' + this.type + ' in ' + this.city, 'dismiss');
+  }
+
+  addToHistory(place: TouristSpot) {
+    this.userService.addSearchHistory(place.place_id).subscribe(result => {
+      console.log('Added ' + place.place_id + ' to history');
+    });
   }
 
   getAllFavorites() {

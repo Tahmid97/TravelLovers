@@ -103,41 +103,54 @@ export class UserService {
   removeFromVisited(spot: TouristSpot) {
     const id = spot.place_id;
     const user = this.currentUser.user_id;
-    return this.http.delete<TouristSpot>('');
-    // return this.http.delete<TouristSpot>('http://localhost:8080/deleteStar?place=' + id + '&user=' + user);
+    // return this.http.delete<TouristSpot>('');
+    return this.http.delete<TouristSpot>('http://localhost:8080/deleteVisit?place=' + id + '&user=' + user);
   }
 
   /*
     Review
   */
   addReview(spot: TouristSpot, review: Review) {
-    return this.http.post<TouristSpot>('http://localhost:8080/insertReview?place=5&user=3&rating=1&recommended=true', spot);
+    const place = spot.place_id;
+    const user = this.currentUser.user_id;
+    const rating = review.rating;
+    const recommended = review.recommended;
+
+    return this.http.post<TouristSpot>('http://localhost:8080/insertReview?place=' + place + '&user=' + user + '&rating=' + rating +
+      '&recommended=' + recommended,
+      spot);
+  }
+
+  getAvgReview(spot: TouristSpot) {
+    return this.http.get<number[]>('http://localhost:8080/getAvgReview?place=' + spot.place_id);
   }
 
 
   /*
     User services
   */
-  login() {
-    // return the users info based on username
+
+
+  register(id, fname, lname, email, gender, dob) {
+    // tslint:disable-next-line:max-line-length
+    return this.http.post<User>('http://localhost:8080/insertUser?id=' + id
+      + '&fname=' + fname + '&lname=' + lname + '&email=' + email + '&gender=' + gender + '&dob=' + dob, '');
   }
 
-  register() {
-    return this.http.post<User>('http://localhost:8080/insertUser?id=1&fname=tim&lname=yom&email=manmail@mail.com&gender=male&dob=2005-05-23', '');
-  }
-
-  edit() {
-    // post request to alter user info by username
+  edit(id, fname, lname, email, gender, dob) {
+    return this.http.put<string>('http://localhost:8080/updateUser?fname=' + fname
+      + '&lname=' + lname + '&email=' + email + '&gender=' + gender + '&dob=' + dob + '&id=' + id, 'user');
   }
 
   /*
     History
   */
   getSearchHistory() {
-
+    return this.http.get<TouristSpot[]>('http://localhost:8080/getSearch?user=' + this.currentUser.user_id);
   }
 
-  addSearchHistory() {
-
+  addSearchHistory(placeid) {
+    // localhost:8080/addSearch?place=3&user=3
+    return this.http.post<TouristSpot>('http://localhost:8080/addSearch?place=' + placeid + '&user=' + this.currentUser.user_id, '');
   }
 }

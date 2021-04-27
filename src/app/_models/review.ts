@@ -1,5 +1,5 @@
 export class Review {
-  text: string;
+  // text: string;
   rating: number;
   recommended: boolean;
 }

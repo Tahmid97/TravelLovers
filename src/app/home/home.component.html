@@ -68,7 +68,8 @@
 
 <div *ngIf="selected.value===4" class="card-container">
   <app-place *ngFor="let place of visited" [place]="place" [tab]="selected.value"
-             (deleteVisitEvent)="getAllVisited()"></app-place>
+             (deleteVisitEvent)="getAllVisited()"
+             (addReviewEvent)="getAllVisited()"></app-place>
 </div>
 
 

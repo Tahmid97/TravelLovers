@@ -12,6 +12,8 @@ import {NotificationService} from '../_services/notification.service';
 })
 export class PlaceComponent implements OnInit {
 
+  avgRating = 0;
+
   @Input() place: TouristSpot;
   @Input() tab: number;
 
@@ -27,19 +29,29 @@ export class PlaceComponent implements OnInit {
   @Output() deleteVisitEvent = new EventEmitter<number>();
   @Output() addVisitEvent = new EventEmitter<number>();
 
+  @Output() addReviewEvent = new EventEmitter<number>();
+
   constructor(public dialog: MatDialog,
               private userService: UserService,
               private notif: NotificationService) { }
 
   ngOnInit() {
+    this.getAvgRating();
+  }
+
+  getAvgRating() {
+    this.userService.getAvgReview(this.place).subscribe(rating => {
+      // console.log(rating[0]);
+      this.avgRating = rating[0].avg;
+    });
   }
 
   openDialog(): void {
     const dialogRef = this.dialog.open(ReviewComponent, {
-      width: '710px',
+      width: '320px',
       data: {
         title: this.place.place_name,
-        text: '',
+        // text: '',
         rating: null,
         recommended: null
       }
@@ -47,15 +59,18 @@ export class PlaceComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
 
-      const review = {
-        text: result.text,
-        rating: result.rating,
-        recommended: result.recommended
-      };
+      if (result) {
+        const review = {
+          // text: result.text,
+          rating: result.rating,
+          recommended: result.recommended
+        };
 
-      this.userService.addReview(this.place, review).subscribe(response => {
-        this.notif.showNotif('Review added for ' + this.place.place_name, 'dismiss');
-      });
+        this.userService.addReview(this.place, review).subscribe(response => {
+          this.notif.showNotif('Review added for ' + this.place.place_name, 'dismiss');
+          this.addReviewEvent.emit(1);
+        });
+      }
       console.log('In Home component');
       console.log(result);
     });

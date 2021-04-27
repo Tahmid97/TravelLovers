@@ -14,6 +14,7 @@ import { PlaceComponent } from './place/place.component';
 import { ReviewComponent } from './review/review.component';
 import { ProfileComponent } from './profile/profile.component';
 import {HttpClientModule} from '@angular/common/http';
+import { HistoryComponent } from './history/history.component';
 
 
 
@@ -27,6 +28,7 @@ import {HttpClientModule} from '@angular/common/http';
     PlaceComponent,
     ReviewComponent,
     ProfileComponent,
+    HistoryComponent,
   ],
   imports: [
     BrowserModule,

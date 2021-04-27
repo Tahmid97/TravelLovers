@@ -7,6 +7,7 @@ import {HttpClient} from '@angular/common/http';
 import {Review} from '../_models/review';
 import {User} from '../_models/user';
 import {AuthService} from './auth.service';
+import {Item} from '../_models/item';
 
 
 @Injectable({ providedIn: 'root' })
@@ -129,17 +130,25 @@ export class UserService {
   /*
     User services
   */
-
-
   register(id, fname, lname, email, gender, dob) {
     // tslint:disable-next-line:max-line-length
+    dob = dob.toISOString();
+
     return this.http.post<User>('http://localhost:8080/insertUser?id=' + id
-      + '&fname=' + fname + '&lname=' + lname + '&email=' + email + '&gender=' + gender + '&dob=' + dob, '');
+      + '&fname=' + fname + '&lname=' + lname + '&email=' + email + '&gender=' + gender + '&dob=' + dob.substr(0, dob.indexOf('T')),
+      '');
   }
 
   edit(id, fname, lname, email, gender, dob) {
+    console.log(typeof dob);
+    console.log(dob);
+
+    if (typeof dob !== 'string') {
+      dob = dob.toISOString();
+    }
+
     return this.http.put<string>('http://localhost:8080/updateUser?fname=' + fname
-      + '&lname=' + lname + '&email=' + email + '&gender=' + gender + '&dob=' + dob + '&id=' + id, 'user');
+      + '&lname=' + lname + '&email=' + email + '&gender=' + gender + '&dob=' + dob.substr(0, dob.indexOf('T')) + '&id=' + id, 'user');
   }
 
   /*
@@ -153,4 +162,13 @@ export class UserService {
     // localhost:8080/addSearch?place=3&user=3
     return this.http.post<TouristSpot>('http://localhost:8080/addSearch?place=' + placeid + '&user=' + this.currentUser.user_id, '');
   }
+
+  /*
+    Item
+  */
+  getItems(place: TouristSpot) {
+    // localhost:8080/getItems?place=101
+    return this.http.get<Item[]>('http://localhost:8080/getItems?place=' + place.place_id);
+  }
+
 }

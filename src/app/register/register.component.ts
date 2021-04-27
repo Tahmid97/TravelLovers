@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {NotificationService} from '../_services/notification.service';
 import {AuthService} from '../_services/auth.service';
 import {UserService} from '../_services/user.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit {
   gender: string;
   dob: Date;
 
-  constructor(private notif: NotificationService, private userService: UserService) { }
+  constructor(private notif: NotificationService, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
   }
@@ -25,8 +26,9 @@ export class RegisterComponent implements OnInit {
   register() {
     this.userService.register(this.username, this.firstName, this.lastName, this.email, this.gender, this.dob).subscribe(result => {
       this.notif.showNotif('User registration successful', 'dismiss');
+      this.router.navigate(['/login']);
     }, error => {
-      this.notif.showNotif(error.toString(), 'warning');
+      this.notif.showNotif('User id taken', 'warning');
     });
   }
 

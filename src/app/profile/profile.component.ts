@@ -23,7 +23,15 @@ export class ProfileComponent implements OnInit {
   constructor(private notif: NotificationService,
               private authService: AuthService,
               private userService: UserService) {
-    authService.currentUser.subscribe(user => {
+
+  }
+
+  ngOnInit() {
+    this.initiateUserValues();
+  }
+
+  initiateUserValues() {
+    this.authService.currentUserValue.subscribe(user => {
       this.currentUser = user;
 
       this.firstName = user.user_fname;
@@ -33,9 +41,6 @@ export class ProfileComponent implements OnInit {
       this.gender = user.user_gender;
       this.dob = user.user_dob;
     });
-  }
-
-  ngOnInit() {
   }
 
   updateProfile() {

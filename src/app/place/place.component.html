@@ -7,11 +7,20 @@
   <mat-card-content>
     <div style="width: 100%;">
       <div style="width: 50%; float: left;">
-        {{avgRating}} stars
+        {{ratingText}}
       </div>
-      <div style="margin-left: 50%;">
+      <div *ngIf="isResturanut == false" style="margin-left: 50%;">
         ${{place.price}}
       </div>
+
+      <div *ngIf="isResturanut == true" style="margin-left: 50%;">
+        <ul>
+          <li *ngFor="let item of menu">
+            <span>{{item.item_name}}: ${{item.item_price}}</span>
+          </li>
+        </ul>
+      </div>
+
     </div>
 
 

@@ -4,6 +4,7 @@ import {ReviewComponent} from '../review/review.component';
 import {MatDialog} from '@angular/material';
 import {UserService} from '../_services/user.service';
 import {NotificationService} from '../_services/notification.service';
+import {Item} from '../_models/item';
 
 @Component({
   selector: 'app-place',
@@ -13,6 +14,9 @@ import {NotificationService} from '../_services/notification.service';
 export class PlaceComponent implements OnInit {
 
   avgRating = 0;
+  isResturanut = false;
+  menu: Item[] = [];
+  ratingText = '';
 
   @Input() place: TouristSpot;
   @Input() tab: number;
@@ -37,12 +41,31 @@ export class PlaceComponent implements OnInit {
 
   ngOnInit() {
     this.getAvgRating();
+    this.getMenuItems();
   }
 
   getAvgRating() {
     this.userService.getAvgReview(this.place).subscribe(rating => {
       // console.log(rating[0]);
+      // @ts-ignore
       this.avgRating = rating[0].avg;
+      if (this.avgRating) {
+        this.ratingText = this.avgRating + ' stars';
+      } else {
+        this.ratingText = 'No rating yet';
+      }
+    });
+  }
+
+  getMenuItems() {
+    this.userService.getItems(this.place).subscribe(result => {
+      if (result.length > 0) {
+        // console.log(result);
+        this.menu = result;
+        this.isResturanut = true;
+      } else {
+        this.isResturanut = false;
+      }
     });
   }
 

@@ -3,9 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="0d0fd5c7-b696-4881-9e04-9e6c81929ffa" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/_models/user.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_models/user.ts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/app/_services/auth.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/auth.service.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/app/app.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/app.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/_services/user.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/_services/user.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/home/home.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/home/home.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/app/login/login.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/src/app/login/login.component.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -107,7 +108,7 @@
       <workItem from="1619280930335" duration="599000" />
       <workItem from="1619449746613" duration="12220000" />
       <workItem from="1619470748699" duration="7977000" />
-      <workItem from="1619479144069" duration="926000" />
+      <workItem from="1619479144069" duration="2901000" />
     </task>
     <servers />
   </component>

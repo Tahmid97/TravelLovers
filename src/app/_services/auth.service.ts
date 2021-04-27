@@ -4,6 +4,7 @@ import {User} from '../_models/user';
 
 import {HttpClient} from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import {NotificationService} from './notification.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -12,17 +13,14 @@ export class AuthService {
   public currentUser: Observable<User>;
 
   // Added HttpClient
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private notif: NotificationService) {
     this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-
-    // this is used by app.component.ts
-    // currentUser is turned into an Observable that will allow other parts of the app to subscribe and get notified when currentUserSubject changes.
     this.currentUser = this.currentUserSubject.asObservable();
   }
 
 
-  public get currentUserValue(): User {
-    return this.currentUserSubject.value;
+  public get currentUserValue(): Observable<User> {
+    return this.currentUserSubject;
   }
 
   login(username: string, password: string): Observable<any> {
@@ -30,14 +28,12 @@ export class AuthService {
     // Read more here: https://angular.io/guide/http
     return this.http.get<User[]>(`http://localhost:8080/getUser?user=` + username)
       .pipe(map(user => {
-        // console.log(user);
-        // login successful if there's a jwt token in the response
         if (user[0]) {
-          console.log(user[0]);
+          // console.log(user[0]);
           localStorage.setItem('currentUser', JSON.stringify(user[0]));
           this.currentUserSubject.next(user[0]);
+          this.notif.showNotif('Logged in as ' + user[0].user_fname, 'Confirmation');
         }
-
         return user[0];
       }));
   }

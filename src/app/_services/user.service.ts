@@ -6,12 +6,18 @@ import {TouristSpot} from '../_models/tourist-spot';
 import {HttpClient} from '@angular/common/http';
 import {Review} from '../_models/review';
 import {User} from '../_models/user';
+import {AuthService} from './auth.service';
 
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
 
-  constructor(private notif: NotificationService, private http: HttpClient) {
+  currentUser: User;
+
+  constructor(private notif: NotificationService, private http: HttpClient, authService: AuthService) {
+    authService.currentUserValue.subscribe(user => {
+      this.currentUser = user;
+    });
   }
 
   search(type, category, city) {
@@ -31,11 +37,13 @@ export class UserService {
     Favorites
   */
   getFavorites() {
-    console.log('get favorites');
-    return this.http.get<TouristSpot[]>('http://localhost:8080/searchFav?fname=Evie');
+    // console.log('get favorites');
+    console.log('Current user: ' + this.currentUser.user_fname);
+    return this.http.get<TouristSpot[]>('http://localhost:8080/searchFav?fname=' + this.currentUser.user_fname);
   }
 
   addToFavorite(spot: TouristSpot) {
+    const id = spot.place_id;
     return this.http.post<TouristSpot>('http://localhost:8080/insertFav?place=5&user=5', spot);
   }
 
@@ -48,7 +56,7 @@ export class UserService {
     Want to go
   */
   getWantToGo() {
-    return this.http.get<TouristSpot[]>('http://localhost:8080/searchWant?fname=Evie');
+    return this.http.get<TouristSpot[]>('http://localhost:8080/searchWant?fname=' + this.currentUser.user_fname);
   }
 
   addToWantToGo(spot: TouristSpot) {
@@ -63,7 +71,7 @@ export class UserService {
     Starred
   */
   getStarred() {
-    return this.http.get<TouristSpot[]>('http://localhost:8080/searchStar?fname=Evie');
+    return this.http.get<TouristSpot[]>('http://localhost:8080/searchStar?fname=' + this.currentUser.user_fname);
   }
 
   addToStarred(spot: TouristSpot) {
@@ -78,7 +86,7 @@ export class UserService {
     visited
   */
   getVisited() {
-    return this.http.get<TouristSpot[]>('http://localhost:8080/searchVisit?fname=Evie');
+    return this.http.get<TouristSpot[]>('http://localhost:8080/searchVisit?fname=' + this.currentUser.user_fname);
   }
 
   addToVisited(spot: TouristSpot) {

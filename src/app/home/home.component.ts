@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
 
   getAllFavorites() {
     this.userService.getFavorites().subscribe(result => {
-      console.log(result);
+      // console.log(result);
       this.favorites = result;
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');

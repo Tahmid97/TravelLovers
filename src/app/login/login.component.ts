@@ -39,15 +39,14 @@ export class LoginComponent {
     // }
 
     this.loading = true;
-    console.log('username and password', this.username, this.password);
+    // console.log('username and password', this.username, this.password);
     this.loading = true;
     this.authService.login(this.username, this.password)
       .pipe(first())
       .subscribe(
         data => {
           this.router.navigate(['']);
-
-          this.notif.showNotif(data, 'confirmation');
+          // this.notif.showNotif('Logged in!', 'confirmation');
         },
         error => {
           this.error = error;

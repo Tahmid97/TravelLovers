@@ -45,6 +45,7 @@ export class HomeComponent implements OnInit {
   }
 
   getAllFavorites() {
+    // console.log('called');
     this.userService.getFavorites().subscribe(result => {
       // console.log(result);
       this.favorites = result;

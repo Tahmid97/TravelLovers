@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TouristSpot} from '../_models/tourist-spot';
 import {ReviewComponent} from '../review/review.component';
 import {MatDialog} from '@angular/material';
@@ -15,7 +15,21 @@ export class PlaceComponent implements OnInit {
   @Input() place: TouristSpot;
   @Input() tab: number;
 
-  constructor(public dialog: MatDialog, private userService: UserService, private notif: NotificationService) { }
+  @Output() deleteFavoriteEvent = new EventEmitter<number>();
+  @Output() addFavoriteEvent = new EventEmitter<number>();
+
+  @Output() deleteWantEvent = new EventEmitter<number>();
+  @Output() addWantEvent = new EventEmitter<number>();
+
+  @Output() deleteStarEvent = new EventEmitter<number>();
+  @Output() addStarEvent = new EventEmitter<number>();
+
+  @Output() deleteVisitEvent = new EventEmitter<number>();
+  @Output() addVisitEvent = new EventEmitter<number>();
+
+  constructor(public dialog: MatDialog,
+              private userService: UserService,
+              private notif: NotificationService) { }
 
   ngOnInit() {
   }
@@ -51,7 +65,8 @@ export class PlaceComponent implements OnInit {
 
   addFavorite() {
     this.userService.addToFavorite(this.place).subscribe(result => {
-      this.notif.showNotif('Added ' + result.place_name + ' to favorites', 'dismiss');
+      this.notif.showNotif('Added ' + this.place.place_name + ' to favorites', 'dismiss');
+      this.addFavoriteEvent.emit(1);
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });
@@ -59,7 +74,8 @@ export class PlaceComponent implements OnInit {
 
   removeFavorite() {
     this.userService.removeFromFavorite(this.place).subscribe(result => {
-      this.notif.showNotif('Removed ' + result.place_name + ' from favorites', 'dismiss');
+      this.notif.showNotif('Removed ' + this.place.place_name + ' from favorites', 'dismiss');
+      this.deleteFavoriteEvent.emit(1);
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });
@@ -69,7 +85,8 @@ export class PlaceComponent implements OnInit {
 
   addWantToGo() {
     this.userService.addToWantToGo(this.place).subscribe(result => {
-      this.notif.showNotif('Added ' + result.place_name + ' to Want To Go', 'dismiss');
+      this.notif.showNotif('Added ' + this.place.place_name + ' to Want To Go', 'dismiss');
+      this.addWantEvent.emit(1);
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });
@@ -77,7 +94,8 @@ export class PlaceComponent implements OnInit {
 
   removeWantToGo() {
     this.userService.removeFromWantToGo(this.place).subscribe(result => {
-      this.notif.showNotif('Removed ' + result.place_name + ' from Want To Go', 'dismiss');
+      this.notif.showNotif('Removed ' + this.place.place_name + ' from Want To Go', 'dismiss');
+      this.deleteWantEvent.emit(1);
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });
@@ -87,7 +105,8 @@ export class PlaceComponent implements OnInit {
 
   addStarred() {
     this.userService.addToStarred(this.place).subscribe(result => {
-      this.notif.showNotif('Added ' + result.place_name + ' to starred', 'dismiss');
+      this.notif.showNotif('Added ' + this.place.place_name + ' to starred', 'dismiss');
+      this.addStarEvent.emit(1);
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });
@@ -95,7 +114,8 @@ export class PlaceComponent implements OnInit {
 
   removeStarred() {
     this.userService.removeFromStarred(this.place).subscribe(result => {
-      this.notif.showNotif('Removed ' + result.place_name + ' from starred', 'dismiss');
+      this.notif.showNotif('Removed ' + this.place.place_name + ' from starred', 'dismiss');
+      this.deleteStarEvent.emit(1);
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });
@@ -105,7 +125,8 @@ export class PlaceComponent implements OnInit {
 
   addVisited() {
     this.userService.addToVisited(this.place).subscribe(result => {
-      this.notif.showNotif('Added ' + result.place_name + ' to visited', 'dismiss');
+      this.notif.showNotif('Added ' + this.place.place_name + ' to visited', 'dismiss');
+      this.addVisitEvent.emit(1);
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });
@@ -113,7 +134,8 @@ export class PlaceComponent implements OnInit {
 
   removeVisited() {
     this.userService.removeFromVisited(this.place).subscribe(result => {
-      this.notif.showNotif('Removed ' + result.place_name + ' from visited', 'dismiss');
+      this.notif.showNotif('Removed ' + this.place.place_name + ' from visited', 'dismiss');
+      this.deleteVisitEvent.emit(1);
     }, error => {
       this.notif.showNotif(error.toString(), 'warning');
     });

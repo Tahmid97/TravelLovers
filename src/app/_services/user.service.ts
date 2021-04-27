@@ -37,18 +37,18 @@ export class UserService {
     Favorites
   */
   getFavorites() {
-    // console.log('get favorites');
-    console.log('Current user: ' + this.currentUser.user_fname);
     return this.http.get<TouristSpot[]>('http://localhost:8080/searchFav?fname=' + this.currentUser.user_fname);
   }
 
   addToFavorite(spot: TouristSpot) {
     const id = spot.place_id;
-    return this.http.post<TouristSpot>('http://localhost:8080/insertFav?place=5&user=5', spot);
+    return this.http.post<TouristSpot>('http://localhost:8080/insertFav?place=' + id + '&user=' + this.currentUser.user_id, spot);
   }
 
   removeFromFavorite(spot: TouristSpot) {
-    return this.http.post<TouristSpot>('', spot);
+    const id = spot.place_id;
+    const user = this.currentUser.user_id;
+    return this.http.delete<TouristSpot>('http://localhost:8080/deleteFav?place=' + id + '&user=' + user);
   }
 
 
@@ -60,11 +60,14 @@ export class UserService {
   }
 
   addToWantToGo(spot: TouristSpot) {
-    return this.http.post<TouristSpot>('', spot);
+    return this.http.post<TouristSpot>('http://localhost:8080/insertWant?place=' + spot.place_id + '&user=' + this.currentUser.user_id,
+      spot);
   }
 
   removeFromWantToGo(spot: TouristSpot) {
-    return this.http.post<TouristSpot>('', spot);
+    const id = spot.place_id;
+    const user = this.currentUser.user_id;
+    return this.http.delete<TouristSpot>('http://localhost:8080/deleteWant?place=' + id + '&user=' + user);
   }
 
   /*
@@ -75,11 +78,14 @@ export class UserService {
   }
 
   addToStarred(spot: TouristSpot) {
-    return this.http.post<TouristSpot>('', spot);
+    return this.http.post<TouristSpot>('http://localhost:8080/insertStar?place=' + spot.place_id + '&user=' + this.currentUser.user_id,
+      spot);
   }
 
   removeFromStarred(spot: TouristSpot) {
-    return this.http.post<TouristSpot>('', spot);
+    const id = spot.place_id;
+    const user = this.currentUser.user_id;
+    return this.http.delete<TouristSpot>('http://localhost:8080/deleteStar?place=' + id + '&user=' + user);
   }
 
   /*
@@ -90,11 +96,15 @@ export class UserService {
   }
 
   addToVisited(spot: TouristSpot) {
-    return this.http.post<TouristSpot>('', spot);
+    return this.http.post<TouristSpot>('http://localhost:8080/insertVisit?place=' + spot.place_id + '&user=' + this.currentUser.user_id,
+      spot);
   }
 
   removeFromVisited(spot: TouristSpot) {
-    return this.http.post<TouristSpot>('', spot);
+    const id = spot.place_id;
+    const user = this.currentUser.user_id;
+    return this.http.delete<TouristSpot>('');
+    // return this.http.delete<TouristSpot>('http://localhost:8080/deleteStar?place=' + id + '&user=' + user);
   }
 
   /*

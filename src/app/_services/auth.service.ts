@@ -24,12 +24,12 @@ export class AuthService {
   }
 
   login(username: string, password: string): Observable<any> {
-    // console.log('In login');
+    console.log('In login');
     // Read more here: https://angular.io/guide/http
     return this.http.get<User[]>(`http://localhost:8080/getUser?user=` + username)
       .pipe(map(user => {
         if (user[0]) {
-          // console.log(user[0]);
+          console.log(user[0]);
           localStorage.setItem('currentUser', JSON.stringify(user[0]));
           this.currentUserSubject.next(user[0]);
           this.notif.showNotif('Logged in as ' + user[0].user_fname, 'Confirmation');
